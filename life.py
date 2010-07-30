@@ -1,7 +1,8 @@
+# use python 3
 from itertools import product, repeat
 import random
 
-def lifestep(grid, rfac):
+def lifestep(grid):
     # find all vectors going from north = (0,-1) to north-east = (1,-1), ... to north-west = (-1,-1)
     surround = lambda: filter(lambda n: n != (0, 0), product((-1, 0, 1), repeat=2))
     # add two points together
@@ -35,8 +36,6 @@ def lifestep(grid, rfac):
                 # stays dead
                 else:
                     ns = 0
-            if random.random() < rfac:
-                ns = 1 - ns
             nexgrid[y][x] = ns
     return nexgrid
 
@@ -59,7 +58,7 @@ if __name__ == "__main__":
     grid = [[round(random.random()) for cell in range(50)] for row in range(50)] 
 
     while True:
-        nex = lifestep(grid, 0.0005)
+        nex = lifestep(grid)
         for row in nex:
             for cell in row:
                 if cell == 1:
