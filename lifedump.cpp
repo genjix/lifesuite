@@ -298,7 +298,7 @@ int main(int argc, const char **argv)
     while(1)
     {
         //g.save();
-        //g.step();
+        g.step();
     }
 
     return 0;
